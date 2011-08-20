@@ -6,10 +6,7 @@ void AddictionTest::testOnePlusOneShouldBeTwo()
 	int result = addiction.calculate(1, 1);
 
 	// then:
-	if (result != 2)
-	{
-		fail("The result is not the expected.");
-	}
+	assertEquals("The result is not the expected.", 2, result);
 }
 
 void AddictionTest::testOnePlusNegativeTwoShouldBeNegativeOne()
@@ -18,8 +15,5 @@ void AddictionTest::testOnePlusNegativeTwoShouldBeNegativeOne()
 	int result = addiction.calculate(1, -2);
 
 	// then:
-	if (result != -1)
-	{
-		fail("The result is not the expected.");
-	}
+	assertEquals("The result is not the expected.", -1, result);
 }

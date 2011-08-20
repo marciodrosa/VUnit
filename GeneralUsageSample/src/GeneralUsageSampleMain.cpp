@@ -1,5 +1,7 @@
 #include "../../VUnit/include/VUnit.h"
 
+#include <string>
+
 using namespace std;
 using namespace vunit;
 
@@ -92,11 +94,76 @@ public:
 	VUNIT_TEST_SUITE_END()
 };
 
+class SampleClass
+{
+	friend ostream& operator<<(ostream& output, const SampleClass& sampleClass);
+	int id;
+public:
+	SampleClass(int id)
+	{
+		this->id = id;
+	}
+
+	bool operator==(const SampleClass& other) const
+	{
+		return this->id == other.id;
+	}
+
+	
+};
+
+ostream& operator<<(ostream& output, const SampleClass& sampleClass)
+{
+	return output << "Sample class with ID " << sampleClass.id;
+}
+
+class AssertEqualsFailTest : public TestCase
+{
+public:
+
+	void assertEqualsShouldValidateEqualValues()
+	{
+		assertEquals("The expected and the actual values are equal.", 1, 1);
+	}
+	
+	void assertEqualsShouldNotValidateNotEqualValues()
+	{
+		assertEquals("The expected and the actual values are NOT equal, the failure is expected.", 1, 2);
+	}
+
+	void assertEqualsShouldValidateObjects()
+	{
+		string someString = "abc";
+		string otherString = "abc";
+		assertEquals("The expected and the actual values are equal.", someString, otherString);
+	}
+
+	void assertEqualsShouldValidateInstancesOfCustomClasses()
+	{
+		SampleClass object(1);
+		SampleClass* pointerToObject = new SampleClass(1);
+		const SampleClass constObject(2);
+
+		assertEquals("The expected and the actual objects are equal.", object, *pointerToObject);
+		assertEquals("The expected and the actual objects are NOT equal, failure expected.", object, constObject);
+
+		delete pointerToObject;
+	}
+
+	VUNIT_TEST_SUITE_BEGIN(AssertEqualsFailTest)
+		VUNIT_TEST_METHOD(assertEqualsShouldValidateEqualValues)
+		VUNIT_TEST_METHOD(assertEqualsShouldNotValidateNotEqualValues)
+		VUNIT_TEST_METHOD(assertEqualsShouldValidateObjects)
+		VUNIT_TEST_METHOD(assertEqualsShouldValidateInstancesOfCustomClasses)
+	VUNIT_TEST_SUITE_END()
+};
+
 VUNIT_APP_BEGIN()
 
 	VUNIT_TEST_CLASS(SomeTest)
 	VUNIT_TEST_CLASS(FailBeforeTest)
 	VUNIT_TEST_CLASS(FailAfterTest)
 	VUNIT_TEST_CLASS(ClassFailTest)
+	VUNIT_TEST_CLASS(AssertEqualsFailTest)
 
 VUNIT_APP_END()

@@ -6,10 +6,7 @@ void SubtractionTest::testOneMinusOneShouldBeZero()
 	int result = subtraction.calculate(1, 1);
 
 	// then:
-	if (result != 0)
-	{
-		fail("The result is not the expected.");
-	}
+	assertEquals("The result is not the expected.", 0, result);
 }
 
 void SubtractionTest::testThreeMinusOneShouldBeTwo()
@@ -18,10 +15,7 @@ void SubtractionTest::testThreeMinusOneShouldBeTwo()
 	int result = subtraction.calculate(3, 1);
 
 	// then:
-	if (result != 2)
-	{
-		fail("The result is not the expected.");
-	}
+	assertEquals("The result is not the expected.", 2, result);
 }
 
 void SubtractionTest::testTwoMinusThreeShouldBeNegativeOne()
@@ -30,8 +24,5 @@ void SubtractionTest::testTwoMinusThreeShouldBeNegativeOne()
 	int result = subtraction.calculate(2, 3);
 
 	// then:
-	if (result != -1)
-	{
-		fail("The result is not the expected.");
-	}
+	assertEquals("The result is not the expected.", -1, result);
 }

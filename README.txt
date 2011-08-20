@@ -33,11 +33,19 @@ public:
 	VUNIT_TEST_SUITE_END()
 };
 
-3) Create the test application, calling the macros VUNIT_APP_BEGIN, VUNIT_TEST_CLASS, VUNIT_APP_END (it will automatically create the main function), like the example:
+3) Inside the test methods, you can call the following methods to assert:
+- fail()
+- assertEquals(expected, actual) (warning: to use with custom classes, must override the == operator of the class and the << operator of the std::ostream)
+(those methods can be also called with an optional std::string as first parameter to be used as failure message)
+
+4) You can also overrides the following methods of the TestCase class: beforeClass, beforeTest, afterTest and afterClass.
+
+5) Create the test application, calling the macros VUNIT_APP_BEGIN, VUNIT_TEST_CLASS, VUNIT_APP_END (it will automatically create the main function), like the example:
 
 VUNIT_APP_BEGIN()
 	VUNIT_TEST_CLASS(MyTestClass)
 	VUNIT_TEST_CLASS(SomeOtherTestClass)
 VUNIT_APP_END()
 
+6) The results will be written in the default cerr object.
 
