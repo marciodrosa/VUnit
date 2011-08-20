@@ -1,0 +1,6 @@
+#ifndef VUNIT_ZINEUNITNAMESPACE_H
+#define VUNIT_ZINEUNITNAMESPACE_H
+
+#define VUNIT_NAMESPACE namespace vunit
+
+#endif
