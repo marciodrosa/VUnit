@@ -97,6 +97,40 @@ VUNIT_NAMESPACE
 		}
 
 		/**
+		Asserts if the value is true.
+		*/
+		void assertTrue(bool actual)
+		{
+			assertEquals(true, actual);
+		}
+
+		/**
+		Asserts if the value is true.
+		message: the message to be shown if the assertion fails
+		*/
+		void assertTrue(std::string message, bool actual)
+		{
+			assertEquals(message, true, actual);
+		}
+
+		/**
+		Asserts if the value is false.
+		*/
+		void assertFalse(bool actual)
+		{
+			assertEquals(false, actual);
+		}
+
+		/**
+		Asserts if the value is false.
+		message: the message to be shown if the assertion fails
+		*/
+		void assertFalse(std::string message, bool actual)
+		{
+			assertEquals(message, false, actual);
+		}
+
+		/**
 		Returns if some test has failed.
 		*/
 		bool hasFailed() const

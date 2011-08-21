@@ -117,7 +117,7 @@ ostream& operator<<(ostream& output, const SampleClass& sampleClass)
 	return output << "Sample class with ID " << sampleClass.id;
 }
 
-class AssertEqualsFailTest : public TestCase
+class AssertEqualsTest : public TestCase
 {
 public:
 
@@ -150,11 +150,42 @@ public:
 		delete pointerToObject;
 	}
 
-	VUNIT_TEST_SUITE_BEGIN(AssertEqualsFailTest)
+	VUNIT_TEST_SUITE_BEGIN(AssertEqualsTest)
 		VUNIT_TEST_METHOD(assertEqualsShouldValidateEqualValues)
 		VUNIT_TEST_METHOD(assertEqualsShouldNotValidateNotEqualValues)
 		VUNIT_TEST_METHOD(assertEqualsShouldValidateObjects)
 		VUNIT_TEST_METHOD(assertEqualsShouldValidateInstancesOfCustomClasses)
+	VUNIT_TEST_SUITE_END()
+};
+
+class AssertTrueAndFalseTest : public TestCase
+{
+public:
+	void assertTrueShouldValidateWithTrueValue()
+	{
+		assertTrue(true);
+	}
+
+	void assertTrueShouldNotValidateWithFalseValue()
+	{
+		assertTrue(false);
+	}
+
+	void assertFalseShouldValidateWithFalseValue()
+	{
+		assertFalse(false);
+	}
+
+	void assertFalseShouldNotValidateWithTrueValue()
+	{
+		assertFalse(true);
+	}
+
+	VUNIT_TEST_SUITE_BEGIN(AssertTrueAndFalseTest)
+		VUNIT_TEST_METHOD(assertTrueShouldValidateWithTrueValue)
+		VUNIT_TEST_METHOD(assertTrueShouldNotValidateWithFalseValue)
+		VUNIT_TEST_METHOD(assertFalseShouldValidateWithFalseValue)
+		VUNIT_TEST_METHOD(assertFalseShouldNotValidateWithTrueValue)
 	VUNIT_TEST_SUITE_END()
 };
 
@@ -164,6 +195,7 @@ VUNIT_APP_BEGIN()
 	VUNIT_TEST_CLASS(FailBeforeTest)
 	VUNIT_TEST_CLASS(FailAfterTest)
 	VUNIT_TEST_CLASS(ClassFailTest)
-	VUNIT_TEST_CLASS(AssertEqualsFailTest)
+	VUNIT_TEST_CLASS(AssertEqualsTest)
+	VUNIT_TEST_CLASS(AssertTrueAndFalseTest)
 
 VUNIT_APP_END()
