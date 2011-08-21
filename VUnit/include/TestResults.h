@@ -21,34 +21,34 @@ VUNIT_NAMESPACE
 		{
 			if (passedCount + failCount == 0)
 			{
-				std::cerr << std::endl << "> Starting tests..." << std::endl << std::endl;
+				std::cout << std::endl << "> Starting tests..." << std::endl << std::endl;
 			}
 			if (passed)
 			{
 				passedCount++;
-				std::cerr << " >>   Passed : ";
+				std::cout << " >>   Passed : ";
 			}
 			else
 			{
 				failCount++;
-				std::cerr << " >> X FAILED : ";
+				std::cout << " >> X FAILED : ";
 			}
 
-			std::cerr << className << " : " << testName;
+			std::cout << className << " : " << testName;
 	
 			if (!passed)
 			{
-				std::cerr << " : " << resultMessage;
+				std::cout << " : " << resultMessage;
 			}
 
-			std::cerr << std::endl;
+			std::cout << std::endl;
 		}
 
 		void finishTests()
 		{
-			std::cerr << std::endl << "> " << (passedCount + failCount) << " tests executed; " << std::endl;
-			std::cerr << "> " << passedCount << " tests passed; " << std::endl;
-			std::cerr << "> " << failCount << " tests failed; " << std::endl << std::endl;
+			std::cout << std::endl << "> " << (passedCount + failCount) << " tests executed; " << std::endl;
+			std::cout << "> " << passedCount << " tests passed; " << std::endl;
+			std::cout << "> " << failCount << " tests failed; " << std::endl << std::endl;
 		}
 
 		unsigned int getFailCount() const

@@ -47,5 +47,5 @@ VUNIT_APP_BEGIN()
 	VUNIT_TEST_CLASS(SomeOtherTestClass)
 VUNIT_APP_END()
 
-6) The results will be written in the default cerr object.
+6) The results will be written in the default cout object.
 
