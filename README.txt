@@ -1,12 +1,12 @@
 =============================================================================
 
-VUNIT is a simple unit test tool for C++.
+V-UNIT is a simple unit test tool for C++.
 
 =============================================================================
 
 PROJECT STRUCTURE:
 
-VUnit is a header-only library, so it doesn't need to be compiled. All files are header files (.h). Only the samples projects needs to be compiled, because those contains .cpp files.
+V-Unit is a header-only library, so it doesn't need to be compiled. All files are header files (.h). Only the samples projects needs to be compiled, because those contains .cpp files.
 
 The package contains a solution for Visual Studio, with the VUnit project (the .h files) and other sample files.
 
@@ -49,4 +49,10 @@ VUNIT_APP_END()
 
 6) The results will be written in the default cout object.
 
+=============================================================================
 
+SAMPLES:
+
+MathSample: an example of use of V-Unit. It contains classes that do math operations (+ and -). The test application validates those operations. Some implementations are purposely wrong to fail on tests execution.
+
+GeneralUsageSample: many fake tests, helpful to see the usage of the fail and asserts methods.
