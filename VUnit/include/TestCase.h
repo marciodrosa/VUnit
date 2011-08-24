@@ -25,6 +25,19 @@ VUNIT_NAMESPACE
 		bool failed;
 		std::string failMessage;
 
+		template<class T>
+		std::string getExpectedValueMessage(std::string customMessage, T expected, T actual)
+		{
+			std::ostringstream messageStream;
+			if (customMessage.length() > 0)
+			{
+				messageStream << customMessage << " - ";
+			}
+			messageStream << "Expected: <" << expected << "> but was: <" << actual << ">.";
+
+			return messageStream.str();
+		}
+
 	public:
 		TestCase() : failed(false) {}
 		virtual ~TestCase() {}
@@ -63,29 +76,23 @@ VUNIT_NAMESPACE
 		}
 
 		/**
-		Asserts if the two objects or values are equal. To use with custom classes,	you must
+		Tests if the two objects or values are equal. To use with custom classes,	you must
 		override the == operator of the class and the << operator of the std::ostream.
+		message: the message to be shown if the assertion fails
 		expected: the expected value
 		actual: the actual value
-		message: the message to be shown if the assertion fails
 		*/
 		template<class T>
 		void assertEquals(std::string message, const T& expected, const T& actual)
 		{
 			if (!(expected == actual))
 			{
-				std::ostringstream messageStream;
-				if (message.length() > 0)
-				{
-					messageStream << message << " - ";
-				}
-				messageStream << "Expected: <" << expected << "> but was: <" << actual << ">.";
-				fail(messageStream.str());
+				fail(getExpectedValueMessage(message, expected, actual));
 			}
 		}
 
 		/**
-		Asserts if the two objects or values are equal. To use with custom classes,	you must
+		Tests if the two objects or values are equal. To use with custom classes,	you must
 		override the == operator of the class and the << operator of the std::ostream.
 		expected: the expected value
 		actual: the actual value
@@ -94,6 +101,36 @@ VUNIT_NAMESPACE
 		void assertEquals(const T& expected, const T& actual)
 		{
 			assertEquals("", expected, actual);
+		}
+
+		/**
+		Tests if the two doubles are equal.
+		message: the message to be shown if the assertion fails
+		expected: the expected value
+		actual: the actual value
+		delta: a value used to avoid the imprecision of the comparation between two doubles. The actual
+		value will be considered equal to the expected if it is between (expected - delta) and (expected + delta).
+		*/
+		void assertEquals(std::string message, double expected, double actual, double delta)
+		{
+			double min = expected - delta;
+			double max = expected + delta;
+			if (actual < min || actual > max)
+			{
+				fail(getExpectedValueMessage(message, expected, actual));
+			}
+		}
+
+		/**
+		Tests if the two doubles are equal.
+		expected: the expected value
+		actual: the actual value
+		delta: a value used to avoid the imprecision of the comparation between two doubles. The actual
+		value will be considered equal to the expected if it is between (expected - delta) and (expected + delta).
+		*/
+		void assertEquals(double expected, double actual, double delta)
+		{
+			assertEquals("", expected, actual, delta);
 		}
 
 		/**
