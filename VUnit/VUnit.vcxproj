@@ -63,6 +63,7 @@
     <ClInclude Include="include\TestApp.h" />
     <ClInclude Include="include\TestCase.h" />
     <ClInclude Include="include\TestResults.h" />
+    <ClInclude Include="include\Version.h" />
     <ClInclude Include="include\VUnit.h" />
     <ClInclude Include="include\VUnitNamespace.h" />
   </ItemGroup>

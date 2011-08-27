@@ -30,5 +30,8 @@
     <ClInclude Include="include\VUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
